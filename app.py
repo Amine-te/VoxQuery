@@ -328,7 +328,7 @@ def render_sidebar():
         st.subheader("🤖 LLM Settings")
         llm_model = st.selectbox(
             "Ollama Model",
-            ["llama3:8b", "mistral:latest", "codellama:7b"],
+            ["llama3:8b", "mistral:latest", "codellama:7b", "qwen2.5-coder:7b"],
             index=0,
             help="Select your Ollama model"
         )
