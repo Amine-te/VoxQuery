@@ -201,26 +201,23 @@ class RAGEngine:
         # Query data collection for each table using semantic similarity
         all_data = []
         for table in table_names:
+            table_lower = table.lower()
+            
+            # Skip transaction tables (billets, voyages) - they only have IDs, not useful reference data
+            if 'billet' in table_lower or 'voyage' in table_lower:
+                continue
+            
             try:
-                # Adjust retrieval count based on table type
-                table_lower = table.lower()
-                if 'billet' in table_lower or 'voyage' in table_lower:
-                    # Fewer examples for transaction tables
-                    n_results = max(2, n_data_per_table // 2)
-                else:
-                    # Standard amount for reference tables
-                    n_results = n_data_per_table
-                
                 # Use semantic search to find most relevant examples
                 results = self.data_collection.query(
                     query_embeddings=query_embedding.tolist(),
-                    n_results=n_results * 2,  # Get more candidates
+                    n_results=n_data_per_table * 2,  # Get more candidates
                     where={"table": table}
                 )
                 
                 if results['documents'][0]:
                     # Take top semantically similar examples
-                    table_data = results['documents'][0][:n_results]
+                    table_data = results['documents'][0][:n_data_per_table]
                     all_data.extend(table_data)
             except:
                 pass
