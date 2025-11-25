@@ -341,7 +341,7 @@ def render_sidebar():
             "Number of Tables to Retrieve",
             min_value=1,
             max_value=10,
-            value=3,
+            value=5,
             help="How many relevant tables to retrieve in Stage 1"
         )
         
@@ -349,7 +349,7 @@ def render_sidebar():
             "Examples per Table",
             min_value=1,
             max_value=20,
-            value=1,
+            value=5,
             help="Number of data examples to retrieve per table"
         )
         

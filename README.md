@@ -296,5 +296,3 @@ MIT License - Feel free to use in your projects!
 For issues or questions, please open a GitHub issue.
 
 ---
-
-**Built with ❤️ for the data community**
